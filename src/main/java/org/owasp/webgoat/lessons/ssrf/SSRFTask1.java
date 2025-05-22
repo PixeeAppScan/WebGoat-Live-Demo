@@ -19,7 +19,6 @@
  *
  * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software projects.
  */
-
 package org.owasp.webgoat.lessons.ssrf;
 
 import org.owasp.webgoat.container.assignments.AssignmentEndpoint;
@@ -29,10 +28,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @AssignmentHints({"ssrf.hint1", "ssrf.hint2"})
 public class SSRFTask1 extends AssignmentEndpoint {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(SSRFTask1.class);
 
   @PostMapping("/SSRF/task1")
   @ResponseBody
@@ -59,7 +62,7 @@ public class SSRFTask1 extends AssignmentEndpoint {
         return failed(this).feedback("ssrf.failure").output(html.toString()).build();
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      LOGGER.error("Error in SSRFTask1 processing: ", e);
       return failed(this).output(e.getMessage()).build();
     }
   }

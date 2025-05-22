@@ -32,14 +32,14 @@ public class CryptoIntegrationTest extends IntegrationTest {
 		try {
 			checkAssignment4();
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			// Handle the exception appropriately
 			fail();
 		}
 
 		try {
 			checkAssignmentSigning();
 		} catch (Exception e) {
-			e.printStackTrace();
+			// Handle the exception appropriately
 			fail();
 		}
 		
